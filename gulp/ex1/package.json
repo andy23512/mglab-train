@@ -1,0 +1,17 @@
+{
+  "name": "gulp-ex1",
+  "version": "1.0.0",
+  "description": "gulp example for perl coder",
+  "author": "andy23512",
+  "license": "ISC",
+  "devDependencies": {
+    "LiveScript": "^1.3.1",
+    "gulp": "^3.9.0",
+    "sh": "0.0.3"
+  },
+  "scripts": {
+    "build": "node_modules/.bin/gulp --require LiveScript build",
+    "start": "node_modules/.bin/gulp --require LiveScript watch",
+    "watch": "node_modules/.bin/gulp --require LiveScript watch"
+  }
+}
