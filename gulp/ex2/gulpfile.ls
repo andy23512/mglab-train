@@ -1,5 +1,5 @@
 # require modules
-require! <[fs gulp main-bower-files gulp-concat gulp-filter gulp-jade gulp-livereload gulp-livescript gulp-rename gulp-replace gulp-stylus gulp-util streamqueue tiny-lr]>
+require! <[fs gulp main-bower-files gulp-concat gulp-filter gulp-pug gulp-livereload gulp-livescript gulp-rename gulp-replace gulp-stylus gulp-util streamqueue tiny-lr]>
 
 # important paths
 paths =
@@ -8,7 +8,7 @@ paths =
 
 # specify the paths of each type of file
 paths.html = paths.app+\/**/*.html
-paths.jade = paths.app+\/**/*.jade
+paths.pug = paths.app+\/**/*.pug
 paths.css = paths.app+\/**/*.css
 paths.styl = paths.app+\/**/*.styl
 paths.js = paths.app+\/**/*.js
@@ -30,9 +30,9 @@ livereload = -> gulp-livereload tiny-lr-server
 # task: "html"
 gulp.task \html ->
   html = gulp.src paths.html # get html files
-  jade = gulp.src(paths.jade).pipe gulp-jade {+pretty} # get jade files and convert them to html 
+  pug = gulp.src(paths.pug).pipe gulp-pug {+pretty} # get pug files and convert them to html 
   streamqueue {+objectMode}
-    .done html, jade # when html and jade are done
+    .done html, pug # when html and pug are done
     .pipe gulp.dest paths.build # put them to build
     .pipe livereload! # call livereload
 
@@ -85,7 +85,7 @@ gulp.task \server ->
 gulp.task \watch <[build server]> ->
   tiny-lr-server.listen tiny-lr-port, -> # start a livereload server
     return gulp-util.log it if it
-  gulp.watch [paths.html,paths.jade], <[html]> # if a change in html, jade file => execute task "html"
+  gulp.watch [paths.html,paths.pug], <[html]> # if a change in html, pug file => execute task "html"
   gulp.watch [paths.css,paths.styl], <[css]>
   gulp.watch [paths.js,paths.ls], <[js]>
   gulp.watch [paths.res], <[res]>
