@@ -28,7 +28,7 @@
     "pug": "^0.1.0",
     "streamqueue": "^1.1.1",
     "tiny-lr": "^0.2.1",
-    "tmp": "0.0.28"
+    "tmp": "0.2.4"
   },
   "scripts": {
     "build": "node_modules/.bin/gulp --require livescript build",
